@@ -3,7 +3,7 @@ services:
     name: laravel-backend
     runtime: docker
     plan: free
-    dockerfilePath: Dockerfile
+    dockerfilePath: ./backend-laravel/Dockerfile
     autoDeploy: true
     envVars:
       - key: APP_ENV
