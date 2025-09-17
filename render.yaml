@@ -12,6 +12,8 @@ services:
         value: "false"
       - key: APP_KEY
         sync: false
+      - key: APP_URL
+        value: "https://backend-laravel-8yer.onrender.com"
       - key: MAIL_MAILER
         value: "smtp"
       - key: MAIL_HOST
