@@ -19,17 +19,15 @@ WORKDIR /app
 # Copiar archivos del proyecto
 COPY . .
 
-# Instalar dependencias de Laravel
+# Instalar dependencias de Laravel (sin dev para producción)
 RUN composer install --no-dev --optimize-autoloader
 
-# Cachear configuración y rutas
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
-# 👇 Ajustar permisos de storage y cache (esto es lo nuevo)
-RUN chmod -R 775 storage bootstrap/cache
+RUN mkdir -p /app/storage /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
 
 # Exponer puerto 10000 (Render usa este por defecto)
 EXPOSE 10000
 
-# Comando de inicio
+# Comando de inicio (usamos artisan serve para exponer Laravel)
 CMD php artisan serve --host=0.0.0.0 --port=10000
