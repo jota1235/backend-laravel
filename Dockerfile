@@ -25,6 +25,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Cachear configuración y rutas
 RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
+# 👇 Ajustar permisos de storage y cache (esto es lo nuevo)
+RUN chmod -R 775 storage bootstrap/cache
+
 # Exponer puerto 10000 (Render usa este por defecto)
 EXPOSE 10000
 
